@@ -1,0 +1,498 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STONEH2O INNOVATIONS | Water Treatment & Plumbing</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-dark: #0A1128;   
+            --sky-blue: #00A6FB;      
+            --accent-cyan: #00E5FF;   
+            --soft-white: #F8FAFC;    
+            --text-muted: #64748B;
+            --whatsapp-green: #25D366;
+        }
+
+        /* 1. OVERFLOW FIX */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #1E293B;
+            background-color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, h6, .navbar-brand {
+            font-family: 'Syne', sans-serif;
+            font-weight: 900!important;
+        }
+
+        /* Nav Glassmorphism */
+        .navbar {
+            background: rgba(255, 255, 255, 0.9) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* 2. BLINKING WHATSAPP BUTTON */
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); transform: scale(1); }
+            50% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); transform: scale(1.03); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); transform: scale(1); }
+        }
+        .btn-whatsapp-top {
+            background-color: var(--whatsapp-green) !important;
+            color: white !important;
+            border-radius: 50px;
+            padding: 10px 24px;
+            font-weight: 600;
+            border: none;
+            animation: pulse-whatsapp 2s infinite;
+            transition: background 0.3s ease;
+        }
+        .btn-whatsapp-top:hover {
+            background-color: #128C7E !important; /* Darker green on hover */
+            animation: none; /* Stop pulsing on hover */
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: #ffffff;
+            color: var(--primary-dark);
+            padding: 160px 0 100px;
+            position: relative;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0, 166, 251, 0.1);
+            color: var(--sky-blue);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 166, 251, 0.2);
+        }
+
+        /* Fluid Shapes */
+        .shape-section {
+            position: relative;
+            z-index: 1;
+        }
+        .shape-section::before {
+            content: "";
+            position: absolute;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="%2300A6FB" fill-opacity="0.05"/></svg>') no-repeat center;
+            opacity: 1;
+            z-index: -1;
+        }
+        #expertise .shape-section::before {
+            width: 300px; height: 300px;
+            top: 10%; right: -5%;
+        }
+        #portfolio .shape-section::before {
+            width: 400px; height: 400px;
+            bottom: 0%; left: -5%;
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon points="50,0 100,25 100,75 50,100 0,75 0,25" fill="%230A1128" fill-opacity="0.03"/></svg>');
+        }
+
+        /* 3. IRREGULAR CONTAINERS FOR EXPERTISE */
+        .modern-card {
+            background: white;
+            border: 1px solid #E2E8F0;
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            /* Default irregular shape */
+            border-radius: 40px 10px 40px 10px; 
+        }
+        .modern-card.alt-shape {
+            /* Alternate irregular shape */
+            border-radius: 10px 40px 10px 40px; 
+        }
+        .modern-card:hover {
+            border-color: var(--sky-blue);
+            box-shadow: 0 15px 35px rgba(0, 166, 251, 0.1);
+            transform: translateY(-5px);
+        }
+        .icon-box {
+            width: 55px;
+            height: 55px;
+            background: #F0F7FF;
+            color: var(--sky-blue);
+            border-radius: 50%; /* Circle icon inside irregular box */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            transition: 0.3s ease;
+        }
+        .modern-card:hover .icon-box {
+            background: var(--sky-blue);
+            color: white;
+        }
+
+        /* 4. STAGGERED MOBILE GRID */
+        @media (max-width: 767px) {
+            .expertise-grid {
+                padding-bottom: 40px; /* Make room for the shifted elements below */
+            }
+            .expertise-grid > div:nth-child(even) {
+                transform: translateY(40px); /* Pushes the second column down */
+            }
+            .modern-card {
+                padding: 1.25rem 1rem; /* Adjust padding for tight mobile fit */
+            }
+            .modern-card .h5 {
+                font-size: 1rem; /* Smaller headings on mobile */
+            }
+            .modern-card p {
+                font-size: 0.75rem; /* Smaller text on mobile */
+            }
+            .icon-box {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Portfolio Gallery */
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #E2E8F0;
+            transition: all 0.3s ease;
+        }
+        .gallery-item:hover {
+            border-color: var(--sky-blue);
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .gallery-img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        /* Contact Cards */
+        .contact-card {
+            background: var(--soft-white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            border: 1px solid #E2E8F0;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        .contact-card:hover {
+            background: white;
+            border-color: var(--sky-blue);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transform: translateY(-3px);
+        }
+        .contact-card .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        /* General Buttons */
+        .btn-custom-primary {
+            background: var(--sky-blue);
+            color: white;
+            border-radius: 50px;
+            padding: 12px 28px;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .btn-custom-primary:hover {
+            background: #008AD8;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 166, 251, 0.3);
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="90">
+
+    <nav id="mainNav" class="navbar navbar-expand-lg fixed-top py-3">
+        <div class="container">
+            <a class="navbar-brand fs-4" href="#">
+                <i class="fa-solid fa-droplet" style="color: var(--sky-blue);"></i>
+                <span>STONE<span style="color: var(--sky-blue);">H2O</span></span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fa-solid fa-bars fs-3"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto fw-medium">
+                    <li class="nav-item"><a class="nav-link px-3" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#expertise">Expertise</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#portfolio">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#contact">Contact</a></li>
+                </ul>
+                <a href="https://wa.me/2347065104703" target="_blank" class="btn btn-whatsapp-top mt-3 mt-lg-0">
+                    <i class="fa-brands fa-whatsapp me-2 fs-5 align-middle"></i> Chat on WhatsApp
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 col-xl-6 text-center text-md-start mb-5 mb-lg-0">
+                    <div class="hero-badge mx-auto mx-md-0">
+                        <i class="fa-solid fa-check-circle me-1"></i> Engineering Pure Water Solutions
+                    </div>
+                    <h1 class="display-3 mb-4" style="line-height: 1.1;">
+                        Expert Water Treatment & Premium <span style="color: var(--sky-blue);">Plumbing</span>.
+                    </h1>
+                    <p class="lead mb-5" style="color: var(--text-muted); font-size: 1.2rem;">
+                        From industrial reverse osmosis to custom pool construction, we design and deliver reliable, flowing solutions for residential and commercial infrastructure.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-md-start">
+                        <a href="#contact" class="btn btn-custom-primary btn-lg px-5">Get a Quote</a>
+                        <a href="#expertise" class="btn btn-outline-dark btn-lg rounded-pill px-5 fw-semibold">Explore Expertise</a>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-xl-6 text-center">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <img src="assets/img/WhatsApp Image 2026-05-19 at 09.06.24.jpeg" alt="Treatment System" class="img-fluid rounded-4 shadow">
+                        </div>
+                        <div class="col-6">
+                            <img src="assets/img/2.jpeg" alt="Pipelaying" class="img-fluid rounded-4 shadow mb-3 mt-4">
+                            <img src="assets/img/1.jpeg" alt="Pipe Fitting" class="img-fluid rounded-4 shadow">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="expertise" class="py-5" style="background-color: var(--soft-white);">
+        <div class="container py-5 shape-section">
+            <div class="row mb-5 justify-content-center text-center">
+                <div class="col-lg-8 col-xl-7">
+                    <h2 class="display-5 mb-3">Our Core <span style="color: var(--sky-blue);">Expertise</span></h2>
+                    <p class="text-muted fs-5">We provide integrated water and plumbing infrastructure for modern homes, commercial buildings, and industrial facilities.</p>
+                </div>
+            </div>
+            
+            <div class="row g-3 expertise-grid">
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="modern-card">
+                        <div class="icon-box"><i class="fa-solid fa-filter"></i></div>
+                        <h4 class="h5 mb-2">Water Treatment</h4>
+                        <p class="text-muted mb-0">Industrial & residential filtration and RO systems.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="modern-card alt-shape">
+                        <div class="icon-box"><i class="fa-solid fa-sink"></i></div>
+                        <h4 class="h5 mb-2">Plumbing</h4>
+                        <p class="text-muted mb-0">Luxury & commercial plumbing installations.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="modern-card">
+                        <div class="icon-box"><i class="fa-solid fa-bore-hole"></i></div>
+                        <h4 class="h5 mb-2">Borehole Drilling</h4>
+                        <p class="text-muted mb-0">Deep well professional drilling and maintenance.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="modern-card alt-shape">
+                        <div class="icon-box"><i class="fa-solid fa-water-ladder"></i></div>
+                        <h4 class="h5 mb-2">Swimming Pools</h4>
+                        <p class="text-muted mb-0">Custom architectural pool construction.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="modern-card alt-shape">
+                        <div class="icon-box"><i class="fa-solid fa-leaf"></i></div>
+                        <h4 class="h5 mb-2">Biodigesters</h4>
+                        <p class="text-muted mb-0">Eco-friendly waste management installation.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="modern-card">
+                        <div class="icon-box"><i class="fa-solid fa-fire-extinguisher"></i></div>
+                        <h4 class="h5 mb-2">Fire Hydrants</h4>
+                        <p class="text-muted mb-0">Safety-compliant fire hydrant installations.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="modern-card alt-shape">
+                        <div class="icon-box"><i class="fa-solid fa-pump-water"></i></div>
+                        <h4 class="h5 mb-2">Pump Installs</h4>
+                        <p class="text-muted mb-0">Submersible and surface water pump repairs.</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="modern-card">
+                        <div class="icon-box"><i class="fa-solid fa-database"></i></div>
+                        <h4 class="h5 mb-2">Tank Solutions</h4>
+                        <p class="text-muted mb-0">Overhead and ground tank installations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-5">
+        <div class="container py-5 shape-section">
+            <div class="text-center mb-5">
+                <h2 class="display-5 mb-3">Recent <span style="color: var(--sky-blue);">Projects</span></h2>
+                <p class="text-muted fs-5">A glance into our engineering installations and finished projects.</p>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="assets/img/WhatsApp Image 2026-05-19 at 09.06.24.jpeg" alt="Industrial Water System" class="gallery-img">
+                        <div class="p-3">
+                            <h5 class="mb-1 text-dark">Treatment Plant</h5>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="assets/img/2.jpeg" alt="Pipelaying Installation" class="gallery-img">
+                        <div class="p-3">
+                            <h5 class="mb-1 text-dark">Infrastructure Laying</h5>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="assets/img/1.jpeg" alt="Detailed Pipe Fitting" class="gallery-img">
+                        <div class="p-3">
+                            <h5 class="mb-1 text-dark">Precision Fitting</h5>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="assets/img/5d6bf0c4-0399-4170-a24c-862fe46b6981.jfif" alt="Complex Industrial System" class="gallery-img">
+                        <div class="p-3">
+                            <h5 class="mb-1 text-dark">Industrial Purification</h5>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="assets/img/WhatsApp Image 2026-05-19 at 09.06.25 (1).jpeg" alt="Underground System" class="gallery-img">
+                        <div class="p-3">
+                            <h5 class="mb-1 text-dark">Underground Tank System</h5>
+                          
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="assets/img/WhatsApp Image 2026-05-19 at 09.06.25 (5).jpeg" alt="Waste Treatment Tank" class="gallery-img">
+                        <div class="p-3">
+                            <h5 class="mb-1 text-dark">Waste Treatment Install</h5>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="assets/img/WhatsApp Image 2026-05-19 at 09.06.25 (2).jpeg" alt="Vertical Treatment Tanks" class="gallery-img">
+                        <div class="p-3">
+                            <h5 class="mb-1 text-dark">Vertical Filter Tanks</h5>
+                         
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="assets/img/WhatsApp Image 2026-05-19 at 09.06.24 (1).jpeg" alt="Multi-Tank Assembly" class="gallery-img">
+                        <div class="p-3">
+                            <h5 class="mb-1 text-dark">Industrial Assembly</h5>
+                          
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="assets/img/WhatsApp Image 2026-05-19 at 09.06.24 (2).jpeg" alt="System Frame and Assembly" class="gallery-img">
+                        <div class="p-3">
+                            <h5 class="mb-1 text-dark">Custom System Frame</h5>
+                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5" style="background-color: var(--soft-white);">
+        <div class="container py-5">
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-lg-8">
+                    <h2 class="display-5 mb-3">Ready to Discuss Your Project?</h2>
+                    <p class="text-muted fs-5 mb-0">Reach out directly through any of the channels below. We provide expert consultation and rapid quotes.</p>
+                </div>
+            </div>
+
+            <div class="row g-4 justify-content-center mb-5">
+                <div class="col-md-4">
+                    <a href="https://wa.me/2347065104703" target="_blank" class="contact-card">
+                        <i class="fa-brands fa-whatsapp contact-icon" style="color: var(--whatsapp-green);"></i>
+                        <h4 class="h5 text-dark mb-2">WhatsApp Us</h4>
+                        <p class="text-muted mb-0">07065104703</p>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="tel:07065104703" class="contact-card">
+                        <i class="fa-solid fa-phone contact-icon" style="color: var(--sky-blue);"></i>
+                        <h4 class="h5 text-dark mb-2">Call Direct</h4>
+                        <p class="text-muted mb-0">07065104703 <br> 07033887884</p>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="mailto:stoneh2oinnovations@gmail.com" class="contact-card">
+                        <i class="fa-solid fa-envelope contact-icon" style="color: #EA4335;"></i>
+                        <h4 class="h5 text-dark mb-2">Email Us</h4>
+                        <p class="text-muted mb-0">stoneh2oinnovations@gmail.com</p>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-top border-secondary mt-5 pt-4 text-center text-muted small">
+                &copy; <span id="year"></span> STONEH2O INNOVATIONS. All Rights Reserved.
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
+
